@@ -41,7 +41,6 @@ class TournamentsRepositoryImpl extends TournamentsRepository {
   Future<void> startTimer() async {
     Stream<String> duration;
     duration = Stream.periodic(const Duration(seconds: 1), (_) {
-      debugPrint('test25');
       return '';
     });
   }

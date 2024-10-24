@@ -1,6 +1,5 @@
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -41,7 +40,6 @@ class CreatorListBloc extends Bloc<CreatorListEvent, CreatorListState> {
     // if (event.index == 0) {
     //   emit((state as PageLoaded).copyWith(sportsmans: sportsmans));
     // } else {
-    debugPrint("test251: ${sportsmansByGroups[event.index].groupName}");
     for (GroupData elm in sportsmansByGroups[event.index].data) {
       filteredSportsmans.add(elm);
     }
@@ -57,7 +55,14 @@ class CreatorListBloc extends Bloc<CreatorListEvent, CreatorListState> {
         sportsmans.add(elm);
       }
     }
-    firstSportsman = sportsmans[0];
+    if (firstSportsman == null) {
+      sportsmans.sort((a, b) {
+        final startTimeFirst = DateFormat('HH:MM:SS').parse(a.startTime);
+        final startTimeSecond = DateFormat('HH:MM:SS').parse(b.startTime);
+        return startTimeFirst.compareTo(startTimeSecond);
+      });
+      firstSportsman = sportsmans[0];
+    }
     RegExp regExp = RegExp(r'[а-яА-я]');
     RegExp regExpYear = RegExp(r'[0-9]');
     RegExp pattern = RegExp(r'(\d{4})(\d{4})');
@@ -89,7 +94,6 @@ class CreatorListBloc extends Bloc<CreatorListEvent, CreatorListState> {
         sportsmansByGroup: sportsmansByGroups,
       ));
     }
-    debugPrint('test25: ${event.isFinished}');
     if (event.isFinished) {
       timer = const Stream<String>.empty();
     } else {

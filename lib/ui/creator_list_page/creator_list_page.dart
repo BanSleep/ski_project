@@ -239,7 +239,6 @@ class _CreatorListPageState extends State<CreatorListPage> {
                         onTap: widget.isFinished
                             ? () {}
                             : () {
-                                debugPrint('test25: ${groupData[index]}');
                                 context.read<CreatorListBloc>().add(
                                       FinishSportsman(
                                         tableName: widget.appBarTitle,

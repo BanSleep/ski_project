@@ -11,7 +11,6 @@ class SportsmanDataSourceImpl extends SportsmanDataSource {
 
   @override
   Future<void> finishSportsman(SportsmanDto sportsmanDto) async {
-    debugPrint("test25: ${sportsmanDto.startNumber} ${sportsmanDto.tableName} ${sportsmanDto.finishTime}");
     await dio.post(
       '$apiUrl/finish',
       data: FormData.fromMap({

@@ -20,6 +20,12 @@ class _MainPageState extends State<MainPage> {
       if (state is PageOpened) {
         return Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.account_box_outlined, color: Colors.white,),
+              onPressed: () {
+                context.go('/authorization');
+              },
+            ),
             actions: state.selectedTab == CurrentTab.tournaments
                 ? [
                     IconButton(
@@ -30,16 +36,13 @@ class _MainPageState extends State<MainPage> {
                       icon: const Icon(
                         Icons.add,
                         color: Colors.white,
-
                       ),
                     ),
                   ]
                 : [],
             elevation: 0,
             title: Text(
-              state.selectedTab == CurrentTab.tournaments
-                  ? 'Список соревнований'
-                  : 'Секундомер',
+              state.selectedTab == CurrentTab.tournaments ? 'Список соревнований' : 'Секундомер',
               style: const TextStyle(
                 color: Colors.white,
               ),
@@ -76,14 +79,13 @@ class _MainPageState extends State<MainPage> {
           ),
           body: state.selectedTab == CurrentTab.tournaments
               ? RefreshIndicator(
-            onRefresh: () async {
-              context.read<MainBloc>().add(const LoadTournaments());
-            },
-
-                child: MainBody(
+                  onRefresh: () async {
+                    context.read<MainBloc>().add(const LoadTournaments());
+                  },
+                  child: MainBody(
                     tournaments: state.tournamentsList,
                   ),
-              )
+                )
               : const StopwatchBody(),
         );
       }

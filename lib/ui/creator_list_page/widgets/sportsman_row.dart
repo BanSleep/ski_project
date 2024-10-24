@@ -30,7 +30,7 @@ class SportsmanRow extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             children: [
-              SizedBox(width: 25, child: index != null ? Text('$index') : Text(data.startNumber.toString())),
+              SizedBox(width: 40, child: index != null ? Text('$index') : Text(data.startNumber.toString())),
               const SizedBox(
                 width: 10,
               ),

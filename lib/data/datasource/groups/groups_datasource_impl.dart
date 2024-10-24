@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:ski_project/data/datasource/groups/groups_datasource.dart';
 import 'package:ski_project/domain/entities/groups/groups.dart';
 
-const apiUrl = 'http://82.147.71.225:8080/';
+const apiUrl = 'http://178.253.43.163:8080/';
 
 
 @Singleton(as: GroupsDataSource)
